@@ -9,7 +9,6 @@ use ReflectionClass;
 use ReflectionException;
 use Throwable;
 use Yiisoft\Db\Connection\ConnectionInterface;
-use Yiisoft\Db\Connection\ConnectionProvider;
 use Yiisoft\Db\Exception\Exception;
 use InvalidArgumentException;
 use Yiisoft\Db\Exception\InvalidCallException;
@@ -1259,6 +1258,7 @@ abstract class AbstractActiveRecord implements ActiveRecordInterface
 
     public function db(): ConnectionInterface
     {
-        return ConnectionProvider::get();
+        return ConnectionStaticProxy::get();
+        //return ConnectionProviderStaticProxy::get();
     }
 }

@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Yiisoft\ActiveRecord\Trait;
 
 use Yiisoft\ActiveRecord\AbstractActiveRecord;
+use Yiisoft\ActiveRecord\ConnectionProviderStaticProxy;
 use Yiisoft\Db\Connection\ConnectionInterface;
-use Yiisoft\Db\Connection\ConnectionProvider;
 
 /**
  * Trait to implement a custom connection name for ActiveRecord.
  *
  * @see AbstractActiveRecord::db()
  */
-trait CustomConnectionTrait
+trait CustomConnectionProviderTrait
 {
     private string $connectionName;
 
@@ -30,7 +30,7 @@ trait CustomConnectionTrait
     public function db(): ConnectionInterface
     {
         if (!empty($this->connectionName)) {
-            return ConnectionProvider::get($this->connectionName);
+            return ConnectionProviderStaticProxy::get($this->connectionName);
         }
 
         return parent::db();
