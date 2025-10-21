@@ -14,7 +14,7 @@ final class ConnectionProviderStaticProxy
     public static function get(string|int|null $name = null): ConnectionInterface
     {
         return self::$provider?->get($name)
-                ?? throw new InvalidArgumentException("ConnectionProvider is not set or connection with name `$name` does not exist.");
+                ?? throw new InvalidArgumentException("ConnectionProvider is not set.");
     }
 
     public static function setProvider(ConnectionProviderInterface $provider): void
